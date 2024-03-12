@@ -11,8 +11,6 @@
 
 // Efficiency in Search Operations: Map offers efficient methods for inserting, removing, and searching for elements, making it suitable for many data manipulation operations.
 
-// ------ Basic exercises
-
 // --- Exercise 1:
 // Create a new Map called myMap and add the following key-value pairs:
 
@@ -80,3 +78,66 @@ const countMapEntries = (map) => {
 }
 
 console.log(countMapEntries(myMap))
+
+
+// Exercise 6:
+// Write a function called mergeMaps that takes two Maps as arguments and returns a new Map containing all key-value pairs from both Maps. If a key exists in both Maps, the value from the second Map should overwrite the value from the first Map.
+
+const myMap1 = new Map([
+  [1, "one"],
+  [2, "two"],
+  [3, "three"],
+])
+
+const myMap2 = new Map([
+  [4, "four"],
+  [5, "five"],
+  [3, "three+"],
+])
+
+const mergeMaps = (map1, map2) => {
+  const mergedMaps = new Map([...map1, ...map2]);
+  return mergedMaps;
+}
+
+console.log(mergeMaps(myMap1, myMap2))
+
+// Exercise 7:
+// Write a function called reverseMap that takes a Map as an argument and returns a new Map where the keys and values are swapped. For example, if the input Map is {1: 'one', 2: 'two'}, the output should be {'one': 1, 'two': 2}.
+
+const reverseMap = (map) => {
+  const reversedMap = new Map();
+  map.forEach((value, key) => {
+    reversedMap.set(value, key);
+  });
+
+  return reversedMap;
+}
+
+console.log(reverseMap(myMap1))
+
+// Exercise 8:
+// Write a function called filterMap that takes a Map and a callback function as arguments and returns a new Map containing only the key-value pairs for which the callback function returns true. The callback function should take the value as an argument and return a boolean indicating whether to include the key-value pair in the filtered Map.
+
+const filterMap = (map, filterFunc) => {
+  const filteredMap = new Map();
+
+  map.forEach((value, key) => {
+    let filtered = filterFunc(value)
+    if (filtered) {
+      filteredMap.set(key, value)
+    }
+  })
+  
+  return filteredMap
+}
+
+const filterFunc = (value) => {
+  if(value === "two") {
+    return true;
+  }
+  return false;
+}
+
+
+console.log(filterMap(myMap1, filterFunc))
